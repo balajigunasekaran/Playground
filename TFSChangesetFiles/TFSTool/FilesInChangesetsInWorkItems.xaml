@@ -1,0 +1,16 @@
+﻿<Window x:Class="TFSTool.FilesInChangesetsInWorkItems"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Files Checked-in for Workitems" Height="400" Width="750">
+    <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Height="25" Margin="14,17,0,0" VerticalAlignment="Top" Width="409">
+            Enter workitems seperated by comma and press &lt;Enter&gt;
+        </TextBlock>
+        <TextBox Name="WorkItemsTextBox" Focusable="True" HorizontalAlignment="Left" Height="18" Margin="335,17,0,0" TextWrapping="NoWrap" Text="97413" VerticalAlignment="Top" Width="185"  KeyDown="WorkItemsTextBox_OnKeyPressed" />
+        <DataGrid Name="FilesGrid" CanUserAddRows="False" AutoGenerateColumns="False" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="14,47,10,14" DataContext="{Binding}" CanUserResizeColumns="False" CanUserResizeRows="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Files" Binding="{Binding Path=File}" Width="*" CanUserReorder="False" IsReadOnly="True" CanUserSort="False" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

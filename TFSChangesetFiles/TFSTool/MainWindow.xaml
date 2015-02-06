@@ -1,0 +1,11 @@
+﻿<Window x:Class="TFSTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tfs Tools" Height="350" Width="525" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock TextWrapping="WrapWithOverflow" Margin="10,19,10,263">
+            This tool will help in consolidating all the files involved in all the changesets for the given list of workitems.
+        </TextBlock>
+        <Button Name="OpenTool1Button" Focusable="True" IsDefault="True" Content="Open" HorizontalAlignment="Left" Height="26" Margin="10,63,0,0" VerticalAlignment="Top" Width="74" Click="OpenTool1Button_Click"/>
+    </Grid>
+</Window>
