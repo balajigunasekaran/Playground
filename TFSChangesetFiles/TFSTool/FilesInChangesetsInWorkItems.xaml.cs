@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace TFSTool
             try
             {
                 var workItemIds = GetWorkitemIds();
-                var files = GetFilesChanged(workItemIds).Select(file => new {File = file});
+                var files = GetFilesChanged(workItemIds).Select(CreateGridItem);
                 FilesGrid.ItemsSource = files;
             }
             catch (Exception ex)
@@ -66,6 +67,14 @@ namespace TFSTool
                 //WorkItemsTextBox.IsEnabled = true;
                 //WorkItemsTextBox.Focus();
             }
+        }
+
+        private static object CreateGridItem(string filePath)
+        {
+            var index = filePath.LastIndexOf('/') + 1;
+            var folder = filePath.Substring(0, index - 1);
+            var file = filePath.Substring(index);
+            return new {File = file, Folder = folder};
         }
 
         private IEnumerable<int> GetWorkitemIds()
@@ -118,6 +127,11 @@ namespace TFSTool
         {
             var artifact = LinkingUtilities.DecodeUri(link.LinkedArtifactUri);
             return String.Equals(artifact.ArtifactType, "Changeset", StringComparison.Ordinal);
+        }
+
+        private void FilesGrid_OnLoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString(CultureInfo.InvariantCulture);
         }
     }
 }

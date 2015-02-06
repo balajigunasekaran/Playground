@@ -35,7 +35,7 @@ namespace TFSChangesetFiles
             return projects;
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var files = new HashSet<string>();
             foreach (var workItemId in WorkItemNumbers)
@@ -53,6 +53,11 @@ namespace TFSChangesetFiles
                 }
             }
             var orderedFiles = files.OrderBy(f => f);
+            foreach (var file in orderedFiles)
+            {
+                var index = file.LastIndexOf('/') + 1;
+                Console.WriteLine("{0}/t{1}", file.Substring(index - 1), file.Substring(index));
+            }
         }
 
         private static IEnumerable<Changeset> GetChangesetsForWorkItem(WorkItem workItem)
